@@ -4,23 +4,49 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop02 World!");
-        School school1 = new School();
-        school1._name = "Brigham Young University Idaho";
-        school1._numStudents = 25000;
-        school1._numTeachers = 1000;
+        bool running = true;
 
-        Student student1 = new Student();
-        student1._name = "Bill Alexander";
-        school1._students = new List<Student>();
-        school1._students.Add(student1);
+        while (running)
+        {
+            Console.WriteLine("Menu Options:");
+            Console.WriteLine("1. Start Breathing Activity");
+            Console.WriteLine("2. Start Reflection Activity");
+            Console.WriteLine("3. Start Listing Activity");
+            Console.WriteLine("4. View Activity Log");
+            Console.WriteLine("5. Quit");
+            Console.Write("Select a choice from the menu: ");
 
-        school1.ShowDetails();
+            string choice = Console.ReadLine();
 
-        School school2 = new School();
-        school2._name = "Brigham Young University";
-        school2._numStudents = 45000;
-        school2._numTeachers = 2000;
-        school2.ShowDetails();
+            switch (choice)
+            {
+                case "1":
+                    Breathing breathing = new Breathing();
+                    breathing.Run();
+                    break;
+                case "2":
+                    Reflection reflection = new Reflection();
+                    reflection.Run();
+                    break;
+                case "3":
+                    Listing listing = new Listing();
+                    listing.Run();
+                    break;
+                case "4":
+                    Console.WriteLine("\n--- Activity Log ---");
+                    Console.WriteLine($"Breathing Activity: {Activity.BreathingCount} times");
+                    Console.WriteLine($"Reflection Activity: {Activity.ReflectionCount} times");
+                    Console.WriteLine($"Listing Activity: {Activity.ListingCount} times\n");
+                    break;
+                case "5":
+                    running = false;
+                    Console.WriteLine("Thank you for participating!");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Press enter to try again.");
+                    Console.ReadLine();
+                    break;
+            }
+        }
     }
 }
